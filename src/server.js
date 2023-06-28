@@ -42,10 +42,7 @@ http.listen(process.env.PORT || 4000, function () {
     console.log("Conexao detectada....");
     let id = socket.id;
 
-    socket.on('testeUser', function(data){
-        console.log(data);
-        io.emit('teste', "data teste___" + id);
-    });
+   
             
     socket.on('disconnect', function(){
         delete usernames[socket.username];
@@ -56,4 +53,9 @@ http.listen(process.env.PORT || 4000, function () {
 
     });
 
+
+    socket.on('testeUser', function(data){
+        console.log(data);
+        io.emit('teste', "data teste___" + id);
+    });
 
