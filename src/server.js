@@ -35,7 +35,7 @@ httpServer.listen(process.env.PORT || 4000, function () {
         console.log("Conexao detectada....");
         let id = socket.id;
         socket.username = data.usuario;
-    
+        io.emit('teste', "data teste___" + id);
                 
         socket.on('testeUser', function(data) {
             console.log(data);
