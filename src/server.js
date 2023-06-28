@@ -13,7 +13,6 @@ const { connect } = require("http2");
 
 app.use(cors())
 
-
 app.use(bodyparser.json())
 // create http server from express instance
 var httpServer = require("http").createServer(app);
