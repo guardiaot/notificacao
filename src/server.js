@@ -6,13 +6,10 @@ var app = express();
 const { Interface } = require("readline");
 const { Server } = require("socket.io");
 
-
-
 const { connect } = require("http2");
-
 app.use(cors())
-
 app.use(bodyparser.json())
+
 // create http server from express instance
 var httpServer = require("http").createServer(app);
  
@@ -26,26 +23,26 @@ var io = require("socket.io")(httpServer, {
 });
  
 
-var usernames = [];
+let messages = [];
 
-// start the HTTP server at port 3000
-httpServer.listen(process.env.PORT || 4000, function () {
-        console.log("Server started running...");
-});        
+   
 
-io.sockets.on("connection", function (socket) { 
-    console.log("Conexao detectada....");
-
-
-    // when the client emits 'sendchat', this listens and executes
-    socket.on('sendchat', function (data) {
-        // we tell the client to execute 'updatechat' with 2 parameters
-        io.sockets.emit('updatechat', 'teste', data);
-    });
-
-
-
-});
-
-
+io.on('connection', socket =>{
+    console.log(`Socket connected:  ${socket.id}`);
     
+    socket.emit('previousMessages', messages);
+
+    socket.on('sendMessage', data =>{
+        console.log(data);
+        messages.push(data);
+        socket.broadcast.emit('receivedMessage', data);
+    })
+
+
+})
+
+
+   // start the HTTP server at port 3000
+httpServer.listen(process.env.PORT || 4000, function () {
+    console.log("Server started running...");
+});      
