@@ -25,7 +25,7 @@ app.use(bodyparser.json())
 var httpServer = require("http").createServer(app);
  
 // include socket IO
-var io = new Server("socket.io")(httpServer, {
+var io = require("socket.io")(httpServer, {
     
     allowEIO3: true,
     cors: {
