@@ -19,6 +19,12 @@ var io = require("socket.io")(httpServer, {
     transports: ['websocket',  'polling'],
     origins: '*',
     allowEIO3: true,
+    cors: {
+        "origin": "*",
+        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+        "preflightContinue": false,
+        "optionsSuccessStatus": 204
+    }
 });
  
 
