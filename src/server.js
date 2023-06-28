@@ -16,18 +16,13 @@ const { connect } = require("http2");
 app.use(cors())
 app.use(bodyparser.json())
 // create http server from express instance
-var server  = http.createServer(app);
+var http = require("http").createServer(app);
  
 // include socket IO
-var io = require("socket.io")(server, {
-    handlePreflightRequest: (req, res) => {
-        const headers = {
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
-            "Access-Control-Allow-Credentials": true
-        };
-        res.writeHead(200, headers);
-        res.end();
+var io = require("socket.io")(http, {
+    cors: {
+        "origin": "*",
+        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
     }
 });
  
