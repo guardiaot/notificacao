@@ -4,6 +4,7 @@ let bodyparser  = require('body-parser');
 var cors = require('cors')
 var app = express();
 const { Interface } = require("readline");
+const { Server } = require("socket.io");
 
 
 
@@ -24,14 +25,15 @@ app.use(bodyparser.json())
 var httpServer = require("http").createServer(app);
  
 // include socket IO
-var io = require("socket.io")(httpServer, {
-    transports: ['polling'],
+var io = new Server("socket.io")(httpServer, {
+    
     allowEIO3: true,
     cors: {
         origin: "*:*",
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         preflightContinue: false,
-        optionsSuccessStatus: 204
+        optionsSuccessStatus: 204,
+        credentials: true,
     }
 });
  
