@@ -37,12 +37,6 @@ httpServer.listen(process.env.PORT || 4000, function () {
         socket.username = data.usuario;
     
                 
-        socket.on('disconnect', function(){
-            delete usernames[socket.username];
-            socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
-        });
-       
-        
         socket.on('testeUser', function(data) {
             console.log(data);
             io.emit('teste', "data teste___" + id);
