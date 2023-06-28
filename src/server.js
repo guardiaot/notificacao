@@ -10,14 +10,13 @@ const { Interface } = require("readline");
 const { connect } = require("http2");
 
 
-
-
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200
-  }
-
-app.use(cors(corsOptions))
+app.use(cors(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+    next();
+  }))
 
 
 app.use(bodyparser.json())
