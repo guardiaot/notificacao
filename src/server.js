@@ -31,16 +31,16 @@ httpServer.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
 });        
 
-    io.on("connection", socket => {
+io.sockets.on("connection", function (socket) {
 
         console.log("Conexao detectada....");
         let id = socket.id;
         socket.username = data.usuario;
-        io.emit('teste', "data teste___" + id);
+        io.sockets.emit('teste', "data teste___" + id);
                 
         socket.on('testeUser', function(data) {
             console.log(data);
-            io.emit('teste', "data teste___" + id);
+            io.sockets.emit('teste', "data teste___" + id);
         });
     
 
