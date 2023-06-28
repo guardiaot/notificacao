@@ -52,7 +52,7 @@ http.listen(process.env.PORT || 4000, function () {
         });
        
         
-        socket.on('testeUser', (data) => {
+        socket.on('testeUser', function(data) {
             console.log(data);
             io.emit('teste', "data teste___" + id);
         });
