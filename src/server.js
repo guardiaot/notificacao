@@ -15,12 +15,10 @@ var httpServer = require("http").createServer(app);
  
 // include socket IO
 var io = require("socket.io")(httpServer, {
-    cors: {
-        "origin": "*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
-        "optionsSuccessStatus": 204
-    }
+    path: '/socket.io',
+    transports: ['websocket',  'polling'],
+    origins: '*',
+    allowEIO3: true,
 });
  
 
