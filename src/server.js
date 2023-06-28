@@ -17,9 +17,7 @@ var httpServer = require("http").createServer(app);
 var io = require("socket.io")(httpServer, {
     path: '/socket.io',
     transports: ['websocket',  'polling'],
-    secure: true,
     origins: '*',
-    allowEIO3: true,
 });
  
 
