@@ -38,18 +38,18 @@ http.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
 });        
 
-    io.sockets.on("connection", function (socket) { 
+    io.on("connection", function (socket) { 
     console.log("Conexao detectada....");
     let id = socket.id;
 
     socket.on('testeUser', function(data){
         console.log(data);
-        io.sockets.emit('teste', "data teste___" + id);
+        io.emit('teste', "data teste___" + id);
     });
             
     socket.on('disconnect', function(){
         delete usernames[socket.username];
-        io.sockets.emit('updateusers', usernames);
+        io.emit('updateusers', usernames);
         socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
     });
             
