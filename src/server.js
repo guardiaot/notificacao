@@ -38,24 +38,27 @@ http.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
 });        
 
-    io.on("connection", function (socket) { 
-    console.log("Conexao detectada....");
-    let id = socket.id;
+    io.on("connection", socket => {
+        
+        console.log("Conexao detectada....");
+        let id = socket.id;
 
-   
-            
-    socket.on('disconnect', function(){
-        delete usernames[socket.username];
-        io.emit('updateusers', usernames);
-        socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+    
+                
+        socket.on('disconnect', function(){
+            delete usernames[socket.username];
+            io.emit('updateusers', usernames);
+            socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+        });
+       
+        
+        socket.on('testeUser', function(data){
+            console.log(data);
+            io.emit('teste', "data teste___" + id);
+        });
+    
+
     });
-            
-
-    });
 
 
-    socket.on('testeUser', function(data){
-        console.log(data);
-        io.emit('teste', "data teste___" + id);
-    });
-
+    
