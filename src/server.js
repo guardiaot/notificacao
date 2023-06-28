@@ -10,7 +10,6 @@ const { Server } = require("socket.io");
 
 const { connect } = require("http2");
 
-
 app.use(cors())
 
 app.use(bodyparser.json())
