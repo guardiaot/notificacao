@@ -9,22 +9,7 @@ const { Interface } = require("readline");
 const { connect } = require("http2");
 
 
-async function database(){
 
-    if(global.connection && global.connection !== 'disconnected')
-        return global.connection;
-
-    const mysql = require('mysql2/promise');
-    var connection = await mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "dataseguros"
-    });
-
-    global.connection = connection;
-    return connection;
-}
 
 
 app.use(cors())
@@ -47,7 +32,7 @@ var usernames = [];
 
 
 
-const myDate = new Date(Date.now()).toLocaleString().split(',')[0];
+
 // start the HTTP server at port 3000
 http.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
