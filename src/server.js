@@ -21,10 +21,9 @@ var http = require("http").createServer(app);
 // include socket IO
 var io = require("socket.io")(http, {
     cors: {
-        "origin": "*:*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
-        "optionsSuccessStatus": 204
+        allRoutes: true,
+        allowOrigins: '*',
+        allowCredentials: false
     }
 });
  
