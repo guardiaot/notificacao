@@ -32,9 +32,6 @@ var io = require("socket.io")(httpServer, {
 
 var usernames = [];
 
-
-
-
 // start the HTTP server at port 3000
 httpServer.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
