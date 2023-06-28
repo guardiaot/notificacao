@@ -22,8 +22,10 @@ var httpServer = require("http").createServer(app);
 var io = require("socket.io")(httpServer, {
     allowEIO3: true,
     cors: {
-        origin: "*", // from the screenshot you provided
-        methods: ["GET", "POST"]
+        origin: "*",
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        preflightContinue: false,
+        optionsSuccessStatus: 204
     }
 });
  
