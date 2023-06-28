@@ -42,7 +42,7 @@ http.listen(process.env.PORT || 4000, function () {
 
         console.log("Conexao detectada....");
         let id = socket.id;
-
+        socket.username = data.usuario;
     
                 
         socket.on('disconnect', function(){
