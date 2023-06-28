@@ -56,8 +56,8 @@ http.listen(process.env.PORT || 4000, function () {
     io.sockets.on("connection", function (socket) { 
     console.log("Conexao detectada....");
 
-    socket.on('teste_user', function(){
-        socket.emit('teste', 'SERVER 01 - teste', 'teste 02');
+    socket.on('teste_user', function(data){
+        socket.emit('teste', data);
     });
             
 
