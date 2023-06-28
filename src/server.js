@@ -20,11 +20,7 @@ var http = require("http").createServer(app);
  
 // include socket IO
 var io = require("socket.io")(http, {
-    cors: {
-        allRoutes: true,
-        allowOrigins: '*',
-        allowCredentials: false
-    },
+    origins: ["*"],
     handlePreflightRequest: (req, res) => {
         res.writeHead(200, {
           "Access-Control-Allow-Origin": "*",
