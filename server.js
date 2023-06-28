@@ -73,8 +73,6 @@ http.listen(process.env.PORT || 3000, function () {
             console.log("Conexao detectada....");
 
 
-            socket.emit('teste', 'SERVER', 'teste');
-
             // when the client emits 'sendchat', this listens and executes
             socket.on('sendchat', function (data) {
                 // we tell the client to execute 'updatechat' with 2 parameters
