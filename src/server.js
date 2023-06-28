@@ -18,14 +18,8 @@ var httpServer = require("http").createServer(app);
  
 // include socket IO
 var io = require("socket.io")(httpServer, {
+    origins: '*',
     allowEIO3: true,
-    cors: {
-        origin: "*",
-        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-        preflightContinue: false,
-        optionsSuccessStatus: 204,
-        credentials: true,
-    }
 });
  
 
