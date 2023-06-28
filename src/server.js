@@ -71,6 +71,7 @@ http.listen(process.env.PORT || 4000, function () {
 
         io.sockets.on("connection", function (socket) { 
             console.log("Conexao detectada....");
+            
             socket.emit('teste', 'SERVER', 'teste');
             // when the client emits 'sendchat', this listens and executes
             socket.on('sendchat', function (data) {
