@@ -16,10 +16,10 @@ const { connect } = require("http2");
 app.use(cors())
 app.use(bodyparser.json())
 // create http server from express instance
-var http = require("http").createServer(app);
+var httpServer = require("http").createServer(app);
  
 // include socket IO
-var io = require("socket.io")(http, {
+var io = require("socket.io")(httpServer, {
     origins: ["*"],
     handlePreflightRequest: (req, res) => {
         res.writeHead(200, {
@@ -39,7 +39,7 @@ var usernames = [];
 
 
 // start the HTTP server at port 3000
-http.listen(process.env.PORT || 4000, function () {
+httpServer.listen(process.env.PORT || 4000, function () {
         console.log("Server started running...");
 });        
 
@@ -52,7 +52,6 @@ http.listen(process.env.PORT || 4000, function () {
                 
         socket.on('disconnect', function(){
             delete usernames[socket.username];
-            io.emit('updateusers', usernames);
             socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
         });
        
