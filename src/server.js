@@ -94,7 +94,7 @@ http.listen(process.env.PORT || 4000, function () {
                 const usuarios = await buscaUsuario();
                 io.emit('usuariosOn', usuarios);
             
-       
+       console.log('teste');
 
                 function notificao(data, id){
                     // we store the username in the socket session for this client
