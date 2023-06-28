@@ -43,7 +43,7 @@ http.listen(process.env.PORT || 4000, function () {
     let id = socket.id;
 
     socket.on('teste_user', function(data){
-        socket.emit('teste', "data teste" + id);
+        socket.emit('teste', "data teste___" + id);
     });
             
 
