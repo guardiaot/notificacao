@@ -18,6 +18,7 @@ var httpServer = require("http").createServer(app);
  
 // include socket IO
 var io = require("socket.io")(httpServer, {
+    "transports": ['polling'],
     origins: '*',
     allowEIO3: true,
 });
