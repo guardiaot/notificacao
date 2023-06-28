@@ -20,17 +20,10 @@ var httpServer = require("http").createServer(app);
  
 // include socket IO
 var io = require("socket.io")(httpServer, {
-    origins: ["*:*"],
-
-    // optional, useful for custom headers
-    handlePreflightRequest: (req, res) => {
-      res.writeHead(200, {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST",
-        "Access-Control-Allow-Headers": "my-custom-header",
-        "Access-Control-Allow-Credentials": true
-      });
-      res.end();
+    allowEIO3: true,
+    cors: {
+        origin: "*", // from the screenshot you provided
+        methods: ["GET", "POST"]
     }
 });
  
