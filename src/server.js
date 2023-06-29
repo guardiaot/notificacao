@@ -32,6 +32,6 @@ io.on('connection', socket =>{
 
 
    // start the HTTP server at port 3000
-httpServer.listen(process.env.PORT || 4000, function () {
+   server.listen(process.env.PORT || 4000, function () {
     console.log("Server started running...");
 });      
