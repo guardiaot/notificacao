@@ -33,7 +33,7 @@ io.on('connection', socket =>{
 
 const whitelist = ['http://teste.test'];
 
-// ✅ Enable pre-flight requests
+
 app.options('*', cors());
 
 const corsOptions = {
@@ -48,7 +48,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-   // start the HTTP server at port 3000
+   // start the HTTP server at port 4000
    server.listen(process.env.PORT || 4000, function () {
     console.log("Server started running...");
 });      
+
