@@ -31,7 +31,7 @@ io.on('connection', socket =>{
 })
 
 
-const whitelist = ['*'];
+const whitelist = ['http://teste.test'];
 
 // ✅ Enable pre-flight requests
 app.options('*', cors());
