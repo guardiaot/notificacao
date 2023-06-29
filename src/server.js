@@ -8,16 +8,20 @@ const origin =
   process.env.NODE_ENV === "production"
     ? process.env.FRONTEND_PROD_URL
     : process.env.FRONTEND_LOCAL_URL;
-    
+
 
 
 const app = express();
-app.use(cors({
-    origin: origin,
-    preflightContinue: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  }))
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", origin);
+  res.header("Access-Control-Allow-Credentials", true);
+
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+})
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
