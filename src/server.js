@@ -46,6 +46,7 @@ io.on('connection', socket =>{
         console.log(data);
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
+        socket.broadcast.emit('teste', 'teste.....');
     })
 
 })
