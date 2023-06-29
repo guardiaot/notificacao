@@ -12,16 +12,7 @@ const origin =
 
 
 const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", origin);
-  res.header("Access-Control-Allow-Credentials", true);
 
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-})
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
@@ -52,6 +43,18 @@ io.on('connection', socket =>{
 })
 
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Credentials", true);
+  
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+      return res.status(200).json({});
+    }
+    next();
+  })
+
+  
    // start the HTTP server at port 3000
    server.listen(process.env.PORT || 4000, function () {
     console.log("Server started running...");
