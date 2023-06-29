@@ -22,10 +22,12 @@ let messages = [];
 io.on('connection', socket =>{
     console.log(`Socket connected:  ${socket.id}`);    
     socket.emit('previousMessages', messages);
+    socket.emit('teste', 'Teste-1....');
     socket.on('sendMessage', data =>{
         console.log(data);
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
+        socket.emit('teste', 'Teste....');
     })
 
 })
