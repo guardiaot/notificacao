@@ -1,8 +1,11 @@
 // initialize express server
+var cors = require('cors')
 var express = require("express");
 let bodyparser  = require('body-parser');
 
 const app = express();
+app.use(cors())
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
