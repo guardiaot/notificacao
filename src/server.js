@@ -20,11 +20,9 @@ const io = require('socket.io')(server, {
     }
 });
 
- 
 
 let messages = [];
 
-   
 
 io.on('connection', socket =>{
     console.log(`Socket connected:  ${socket.id}`);    
