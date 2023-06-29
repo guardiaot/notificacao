@@ -3,18 +3,24 @@ var cors = require('cors')
 var express = require("express");
 let bodyparser  = require('body-parser');
 
+
+const origin =
+  process.env.NODE_ENV === "production"
+    ? process.env.FRONTEND_PROD_URL
+    : process.env.FRONTEND_LOCAL_URL;
+    
+
+
 const app = express();
-app.use(cors())
+app.use(cors({
+    origin: origin,
+    preflightContinue: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  }))
 
 const server = require('http').createServer(app);
-const io = require('socket.io')(server, {
-    cors: {
-        "origin": "*",
-        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        "preflightContinue": false,
-        "optionsSuccessStatus": 204
-    }
-});
+const io = require('socket.io')(server);
 
  
 
